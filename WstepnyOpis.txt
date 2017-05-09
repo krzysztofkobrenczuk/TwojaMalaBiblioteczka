@@ -1,0 +1,16 @@
+------- Biblioteczka - Twoja ma³a biblioteka --------
+Aplikacja webowa zbudowana przy u¿yciu technologii ASP.NET.
+
+- Model-View-Controller - rozdzielenie poszczególnych zadañ w aplikacji
+- Entity Framework - baza danych przechowuj¹ca "Pó³ki", "Ksi¹¿ki", U¿ytkowników
+- ASP.NET Identity - mo¿liwoœæ logowania, wylogowywania, przechowywanie danych poszczególnych u¿ytkowników
+- Stworzenie API dla ksi¹¿ek i pó³ek 
+- Strona wizualna aplikacji przy u¿yciu HTML/CSS/Bootstrap mo¿e jakieœ drobnostki z JS
+- AngularJS - plan na póŸniej
+
+Aplikacja bêdzie mia³a na celu mo¿liwoœæ zalogowania siê na w³asne konto, na którym
+mo¿na bêdzie dodawaæ pozycje ksi¹¿ek które aktualnie siê czyta/przeczyta³o.
+Ksi¹¿ki bêdzie mo¿na dodawaæ na poszczególne "Pó³ki" np. 
+
+Nazwa pó³ki: "Ksi¹¿ki przeczytane w maju", w której bêd¹ zawarte np 3 ró¿ne pozycje
+Klasa ksi¹¿ki bêdzie mia³a pola: Id, nazwa, data rozpoczêcia czytania, liczba stron, autor
