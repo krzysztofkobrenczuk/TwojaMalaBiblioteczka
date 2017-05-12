@@ -10,7 +10,9 @@ namespace Biblioteczka.ViewModels
     public class LoginViewModel
     {
         [Required]
-        public string Username { get; set; }
+       // [Display(Name = "User name")]
+        public string UserName { get; set; }
+
         [Required]
         public string Password { get; set; }
     }

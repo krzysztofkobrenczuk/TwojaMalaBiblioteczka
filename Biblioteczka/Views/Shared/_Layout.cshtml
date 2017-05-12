@@ -46,8 +46,12 @@
                         <li><span id="username">@User.Identity.Name</span></li>
                         <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
                     }
-
-                    <li><a href="#">Register</a></li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-controller="Auth" asp-action="Login">Login</a></li>
+                        <li><a asp-controller="Auth" asp-action="Register">Register</a></li>
+                    }
+              
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

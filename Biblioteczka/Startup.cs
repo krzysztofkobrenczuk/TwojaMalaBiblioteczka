@@ -48,9 +48,10 @@ namespace Biblioteczka
             //Identity
             services.AddIdentity<LibraryUser, IdentityRole>(config =>
             {
-                config.User.RequireUniqueEmail = true;
+                //config.User.RequireUniqueEmail = true;
                 config.Password.RequiredLength = 4;
                 config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+                config.Cookies.ApplicationCookie.LogoutPath = "/Auth/Logout";
 
                 //Use Identity in the API  ?
                 config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents()
@@ -71,6 +72,21 @@ namespace Biblioteczka
                 };
             })
             .AddEntityFrameworkStores<LibraryContext>();
+
+            //services.Configure<IdentityOptions>(options =>
+            //{
+            //    // Password settings
+            //    options.Password.RequireDigit = true;
+            //    options.Password.RequiredLength = 8;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //    options.Password.RequireUppercase = true;
+            //    options.Password.RequireLowercase = false;
+
+            //    // Lockout settings
+            //    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+            //    options.Lockout.MaxFailedAccessAttempts = 10;
+
+            //});
 
 
             //implementacja IConfigurationRoot service
