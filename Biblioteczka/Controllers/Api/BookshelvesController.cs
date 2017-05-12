@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteczka.Controllers.Api
 {
-
+     
     [Route("api/bookshelves")]
     
     public class BookshelvesController : Controller
@@ -43,7 +43,6 @@ namespace Biblioteczka.Controllers.Api
                 _logger.LogError($"Failed to getAll Bookshelves: {ex}");
                 return BadRequest("Error occured" + ex);
             }
-
         }
 
         [HttpPost("")]
@@ -66,34 +65,6 @@ namespace Biblioteczka.Controllers.Api
             }
             return BadRequest("Failed to save the bookshelve");      //Zwracamy stan modelu  np. w przypadku za krótkiej nazwy stan zwraca komunikat o zbyt krótkiej nazwie  
         }
-
-       // [HttpPost, ActionName("Delete")]
-       // [ValidateAntiForgeryToken]
-       //[HttpDelete("")]
-       // public async Task<IActionResult> DeleteConfirmed([FromBody]BookshelveViewModel theBookshelve)
-       // {
-       //     var oldBookshelve = Mapper.Map<Bookshelve>(theBookshelve);
-
-       //     oldBookshelve.UserName = User.Identity.Name;
-
-       //     _repository.DeleteBookshelve(oldBookshelve);
-
-       //     if(await _repository.SaveChangesAsync())
-       //     {
-       //         return Created($"api/bookshelve", Mapper.Map<BookshelveViewModel>(oldBookshelve));
-       //         //{theBookshelve.Name}
-       //     }
-       //     return BadRequest("Failed to delete bookshelve");
-       // }
-
-        public void Delete(int id)
-        {
-            
-            var oldBookshelve = Mapper.Map<Bookshelve>(theBookshelve);
-
-        }
-
-
 
     }
 }
