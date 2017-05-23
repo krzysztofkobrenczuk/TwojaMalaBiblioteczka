@@ -17,9 +17,9 @@
           });
 
           $routeProvider.when("/delete", {
-              controller: "bookshelveEditorController",
+              controller: "bookshelveController",
               controllerAs: "vm",
-              templateUrl: "/views/delete.html"
+              templateUrl: "/views/bookshelvesView.html"
           });
 
           $routeProvider.otherwise({ redirectTo: "/" });

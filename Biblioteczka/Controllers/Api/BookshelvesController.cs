@@ -7,18 +7,19 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Biblioteczka.Controllers.Api
 {
-     
-    [Route("api/bookshelves")]
     
+    [Route("api/bookshelves")]
     public class BookshelvesController : Controller
     {
         private ILogger<BookshelvesController> _logger;
         private ILibraryRepository _repository;
+        
 
         public BookshelvesController(ILibraryRepository repository, ILogger<BookshelvesController> logger)
         {
@@ -45,6 +46,11 @@ namespace Biblioteczka.Controllers.Api
             }
         }
 
+
+      
+
+
+
         [HttpPost("")]
         public async Task<IActionResult> Post([FromBody]BookshelveViewModel theBookshelve)  //frombody w celu przypieczętowania danych pochodzących z POST do naszego modelu
         {
@@ -65,6 +71,32 @@ namespace Biblioteczka.Controllers.Api
             }
             return BadRequest("Failed to save the bookshelve");      //Zwracamy stan modelu  np. w przypadku za krótkiej nazwy stan zwraca komunikat o zbyt krótkiej nazwie  
         }
+
+       
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            //var bookshelve = _repository.Find(id);
+            var bookshelve = _repository.GetUserBookShelvesById(id, this.User.Identity.Name);
+
+
+            if (bookshelve == null)
+            {
+                return NotFound();
+            }
+
+            _repository.DeleteBookshelve(id);
+
+            if (await _repository.SaveChangesAsync())
+            {
+                return new NoContentResult();
+            }
+
+            return BadRequest("Failed to delete");
+
+        }
+
 
     }
 }

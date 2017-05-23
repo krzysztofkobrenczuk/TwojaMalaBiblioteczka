@@ -75,7 +75,6 @@ namespace Biblioteczka.Controllers
         }
 
         [HttpPost]
-       // [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(LoginViewModel loginViewModel)
         {
             if (ModelState.IsValid)

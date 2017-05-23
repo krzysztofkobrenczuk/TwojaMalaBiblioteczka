@@ -36,12 +36,19 @@ namespace Biblioteczka.Models
             _context.Add(bookshelve);
         }
 
-        public void DeleteBookshelve(Bookshelve bookshelve)
+       public void DeleteBookshelve(int id)
         {
-            Bookshelve existing = _context.Bookshalves.Find(bookshelve.Id);
-            _context.Bookshalves.Remove(existing);
+            var entity = _context.Bookshalves.First(b => b.Id == id);
+            _context.Bookshalves.Remove(entity);
+            
+            
         }
 
+        //Test method
+        public Bookshelve Find(int id)
+        {
+            return _context.Bookshalves.FirstOrDefault(t => t.Id == id);
+        }
 
         public IEnumerable<Bookshelve> GetAllBookshelves()
         {

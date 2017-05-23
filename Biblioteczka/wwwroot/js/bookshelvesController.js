@@ -63,6 +63,21 @@
             vm.isBusy = true;
             vm.errorMessage = "";
 
+            var id = vm.bookshelves.id;
+
+            $http.delete("/api/bookshelves/" + id)
+            .then(function (response) {
+                //success          
+                vm.bookshelves.push(response.data)
+                
+            }, function () {
+                //failure
+                vm.errorMessage = "Failed to delete bookshelve"
+            })
+            .finally(function () {
+                vm.isBusy = false;
+            });
         };
+    
     }
 })();

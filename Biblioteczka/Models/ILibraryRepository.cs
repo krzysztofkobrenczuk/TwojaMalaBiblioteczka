@@ -12,11 +12,15 @@ namespace Biblioteczka.Models
         Bookshelve GetUserBookShelvesByName(string bookshelveName, string name);
         Bookshelve GetUserBookShelvesById(int id, string username);
 
-        void AddBookShelve(Bookshelve bookshelve);
-        void DeleteBookshelve(Bookshelve bookshelve);
+
+        void AddBookShelve(Bookshelve bookshelve);   
         void AddBook(string bookshelveName, Book newBook, string username);
+        void DeleteBookshelve(int id);
+        Bookshelve Find(int id);
 
         Task<bool> SaveChangesAsync();
+
+        
         
     }
 }

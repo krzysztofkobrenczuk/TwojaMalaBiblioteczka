@@ -38,7 +38,6 @@ namespace Biblioteczka.Controllers.Web
                 return View();  
         }
 
-
         //ASP.NET Identity
         [Authorize]
         public IActionResult Bookshelves()
@@ -46,10 +45,7 @@ namespace Biblioteczka.Controllers.Web
                // var data = _repository.GetAllBookshelves();
                 return View();    
         }
-
-
-     
-
+ 
         public IActionResult Contact()
         {
             return View();
