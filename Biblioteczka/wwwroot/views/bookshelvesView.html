@@ -5,15 +5,23 @@
     <table class="table table-responsive" table-striped">
         <tr ng-repeat="bookshelves in vm.bookshelves">
             <td>{{bookshelves.name}}</td>
+            <td>{{bookshelves.id}}</td>
             <td>{{bookshelves.dateCreated | date : shortDate }}</td>
+
             <!-- # przychodzi z ROUTE app-bookshelve mówi przeglądarce, że to inter-page link-->
             <td><a ng-href="#!/editor/{{ bookshelves.name }}" class="btn btn-sm btn-primary">Managed</a></td>
+
+
             <td>
-                 <form novalidate name="deleteBookshelveForm" ng-submit="vm.deleteBookshelve()"></form>
-                 <input type="submit" value="Delete" class="btn btn-sm btn-danger"ng-disabled="deleteBookshelveForm.$invalid" />
+
+                <a ng-click="vm.deleteBookshelves(bookshelves.id)" class="btn btn-sm btn-danger">Delete</a>
             </td>
-        </tr> 
+           
+        </tr>
+
+
     </table>
+    
   
 
     <form novalidate name="newBookshelveForm" ng-submit="vm.addBookshelve()">

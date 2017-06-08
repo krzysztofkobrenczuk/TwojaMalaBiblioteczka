@@ -6,9 +6,9 @@
     <title>Biblioteczka - @ViewBag.Title</title>
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    @*<link rel="stylesheet" href="~/lib/bootswatch/yeti/bootstrap.min.css" />*@
     <link rel="stylesheet" href="~/lib/Font-Awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
 
 </head>
 <body>
@@ -32,7 +32,6 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li><a asp-controller="App" asp-action="Bookshelves">Bookshelves</a></li>
-                        <li><a asp-controller="App" asp-action="AddBook">Add Book</a></li>
                     }
                     <li><a asp-controller="App" asp-action="About">About</a></li>
                     <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
@@ -43,7 +42,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li><span id="username">@User.Identity.Name</span></li>
+                        <li><span id="username">Zalogowany: @User.Identity.Name</span></li>
                         <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
                     }
                     @if (!User.Identity.IsAuthenticated)
@@ -51,13 +50,15 @@
                         <li><a asp-controller="Auth" asp-action="Login">Login</a></li>
                         <li><a asp-controller="Auth" asp-action="Register">Register</a></li>
                     }
-              
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
 
     <div id="wrapper">
+
+
         <div id="main" class="container-fluid">
             <div>
                 @RenderBody()
@@ -66,9 +67,12 @@
 
         <div id="footer" class="container-fluid">
             <div class="navbar navbar-inverse navbar-fixed-bottom">
-                <h4 class="text-center text-info">&copy; 2017 Twoja mała biblioteka</h4>
+                <h5 class="text-center text-info">&copy; 2017 Twoja mała biblioteka</h5>
             </div>
         </div>
+
+
+
 
     </div>
 

@@ -38,13 +38,22 @@ namespace Biblioteczka.Models
 
        public void DeleteBookshelve(int id)
         {
-            var entity = _context.Bookshalves.First(b => b.Id == id);
-            _context.Bookshalves.Remove(entity);
-            
-            
+            var entity = _context.Bookshalves
+                //.Include(t => t.Books)
+                .First(b => b.Id == id);
+            _context.Bookshalves.Remove(entity); 
         }
 
-        //Test method
+
+
+        // /////////////////////////////////////////////////////
+        public void DeleteBook(int id)
+        {
+            var entity = _context.Books.First(b => b.BookId == id);
+            _context.Books.Remove(entity);
+        }
+
+
         public Bookshelve Find(int id)
         {
             return _context.Bookshalves.FirstOrDefault(t => t.Id == id);
@@ -89,6 +98,13 @@ namespace Biblioteczka.Models
          .Include(t => t.Books)
          .Where(t => t.Id == id && t.UserName == username)
          .FirstOrDefault();
+        }
+        // /////////////////////////////////////
+        public Book GetUserBookById(int id)
+        {
+            return _context.Books
+            .Where(t => t.BookId == id)
+            .FirstOrDefault();
         }
 
         public async Task<bool> SaveChangesAsync()

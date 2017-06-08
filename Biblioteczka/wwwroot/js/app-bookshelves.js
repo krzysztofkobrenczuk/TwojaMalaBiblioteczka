@@ -2,6 +2,7 @@
     "use strict";
     //Creating module for us / second parameter
     angular.module("app-bookshelves", ["simpleControls", "ngRoute"])
+
       .config(function ($routeProvider) {
 
           $routeProvider.when("/", {
@@ -16,15 +17,11 @@
               templateUrl: "/views/bookshelveEditorView.html"
           });
 
-          $routeProvider.when("/delete", {
-              controller: "bookshelveController",
-              controllerAs: "vm",
-              templateUrl: "/views/bookshelvesView.html"
-          });
-
           $routeProvider.otherwise({ redirectTo: "/" });
           
       });
+
+   
 
 
 })();

@@ -4,9 +4,13 @@
     angular.module("app-bookshelves")
         .controller("bookshelveEditorController", bookshelveEditorController);
 
-    function bookshelveEditorController($routeParams, $http) {
-        var vm = this;
+    function bookshelveEditorController($routeParams, $scope, $route, $http) {
 
+        $scope.reloadRoute = function () {
+            $route.reload();
+        }
+
+        var vm = this;
         vm.bookshelveName = $routeParams.bookshelveName;
         vm.newBook = {};
         vm.books = [];
@@ -46,6 +50,28 @@
             .finally(function () {
                 vm.isBusy = false;
             });
+        };
+
+        vm.deleteBook = function (Id) {
+            vm.isBusy = true;
+            vm.errorMessage = "";
+
+            $http.delete("/api/bookshelves/" + vm.bookshelveName + "/books/" + Id)
+              .then(function (response) {
+                  //success                  
+                  vm.books.status = "Deleted";
+                  $scope.reloadRoute();
+
+              }, function () {
+                  //failure
+                  vm.errorMessage = "Failed to delete bookshelve";
+              })
+               .finally(function () {
+                   vm.isBusy = false;
+
+
+               });
+
         };
 
 

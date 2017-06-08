@@ -10,8 +10,10 @@ namespace Biblioteczka.ViewModels
     public class BookshelveViewModel
     {
         [Required]
-        [StringLength(100, MinimumLength = 5)]
+        [StringLength(100, MinimumLength = 3)]
         public string Name { get; set; }
+        public int Id { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+
     }
 }

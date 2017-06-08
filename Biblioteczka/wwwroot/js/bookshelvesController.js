@@ -7,7 +7,12 @@
     .controller("bookshelvesController", bookshelvesController);
 
     //call the server -> like contrustor injector
-    function bookshelvesController($http) {
+    function bookshelvesController($scope, $route, $http) {
+
+
+        $scope.reloadRoute = function () {
+            $route.reload();
+        }
 
         var vm = this;
 
@@ -15,11 +20,11 @@
 
         vm.newBookshelve = {};
 
+        vm.bookShelveId = {};
+
         vm.errorMessage = "";
 
         vm.isBusy = true;
-
-
 
         //call to the server
         $http.get("/api/bookshelves")
@@ -52,32 +57,39 @@
                  vm.newBookshelve = {};
              }, function () {
                  //failure
-                 vm.errorMessage = "Failed to save new bookshelve"
+                 vm.errorMessage = "Failed to save new bookshelve";
              })
             .finally(function () {
                 vm.isBusy = false;
             });
         };
 
-        vm.deleteBookshelve = function () {
+        vm.deleteBookshelves = function (Id) {
             vm.isBusy = true;
             vm.errorMessage = "";
 
-            var id = vm.bookshelves.id;
 
-            $http.delete("/api/bookshelves/" + id)
-            .then(function (response) {
-                //success          
-                vm.bookshelves.push(response.data)
-                
-            }, function () {
-                //failure
-                vm.errorMessage = "Failed to delete bookshelve"
-            })
-            .finally(function () {
-                vm.isBusy = false;
-            });
-        };
+            $http.delete("/api/bookshelves/" + Id)
+                .then(function (response) {
+                    //success                  
+                    vm.bookshelves.status = "Deleted";
+                    $scope.reloadRoute();
+
+                }, function () {
+                    //failure
+                    vm.errorMessage = "Failed to delete bookshelve";
+                })
+                 .finally(function () {                   
+                     vm.isBusy = false;
+                  
+               
+                 });
+
+          
+
+            };
+     
+     
     
     }
 })();

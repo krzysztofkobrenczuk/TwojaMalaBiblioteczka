@@ -9,6 +9,9 @@ namespace Biblioteczka.ViewModels
 {
     public class BookViewModel
     {
+
+        public int BookId { get; set; }
+
         [Required]
         [StringLength(100, MinimumLength = 2)]
         public string Name { get; set; }
@@ -21,7 +24,7 @@ namespace Biblioteczka.ViewModels
         [StringLength(4096)]
         public string Description { get; set;  }
 
-        [Required]
+       // [Required]
         public DateTime DateStarted { get; set; }
 
     }

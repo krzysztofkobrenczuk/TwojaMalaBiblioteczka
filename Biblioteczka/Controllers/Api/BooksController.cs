@@ -27,8 +27,6 @@ namespace Biblioteczka.Controllers.Api
             _logger = logger;
 
         }
-
-
         [HttpGet("")]
         public IActionResult Get(string bookshelveName)
         {
@@ -74,6 +72,29 @@ namespace Biblioteczka.Controllers.Api
                 _logger.LogError("Failed to save new Book: {0} ", ex);
             }
             return BadRequest("Failed to save new Book");
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            //var bookshelve = _repository.Find(id);
+            var book = _repository.GetUserBookById(id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            _repository.DeleteBook(id);
+
+            if (await _repository.SaveChangesAsync())
+            {
+                return new NoContentResult();
+            }
+
+            return BadRequest("Failed to delete");
+
         }
     }
 }

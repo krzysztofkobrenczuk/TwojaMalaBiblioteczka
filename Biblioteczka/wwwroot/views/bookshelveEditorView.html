@@ -1,59 +1,91 @@
 ﻿
-<div>
-    <div>
-        <a href="#!/" class="btn btn-sm btn-default"><i class="fa fa-angle-left"></i>Back</a>
-    </div>
-    <div class="col-md-4">
-        <h2>{{ vm.bookshelveName }}</h2>
-      
-        <wait-cursor display-when="vm.isBusy"></wait-cursor>
-        <div class="alert alert-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
 
-        <form novalidate name="newBookForm" ng-submit="vm.addBook()">
-            <div class="form-group">
-                <label>Nazwa Książki</label>
-                <input class="form-control" id="name" name="name" ng-model="vm.newBook.name" required />
-                <span ng-show="newBookForm.name.$error.required" class="text-warning">Name is required</span>
-            </div>
-            <div class="form-group">
-                <label>Date Started</label>
-                <input class="form-control" id="dateStarted" name="dateStarted" ng-model="vm.newBook.dateStarted" required 
-                       ng-pattern="/^)\d{2})\/(\d{2})\/(\d{4})$/"/>
-                <span ng-show="newBookForm.dateStarted.$error.required" class="text-warning">Date Started is required</span>
-                <span ng-show="newBookForm.dateStarted.$error.pattern" class="text-warning">Must be in format of MM-dd-yyyy</span>
-
-            </div>
+        <div>
             <div>
-                <input type="submit" value="Add" class="btn btn-success" ng-disabled="newBookForm.$invalid" />
+                <a href="#!/" class="btn btn-sm btn-default"><i class="fa fa-angle-left"></i>Back</a>
             </div>
-        </form>
-    </div>
+            <div class="col-md-4">
+                <h2>{{ vm.bookshelveName }}</h2>
 
-    <div class="col-md-8">
-        <h2>Twoje Książki</h2>
+                <wait-cursor display-when="vm.isBusy"></wait-cursor>
+                <div class="alert alert-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
 
-        <table class="table table-responsive table-striped">
-            <tr>
-                <th>Book Name</th>
-                <th>Pages</th>
-                <th>Date Started</th>
-                <th>Description</th>
-            </tr>
-            <tr ng-repeat="book in vm.books">
-                <td>{{ book.name }}</td>
-                <td>{{ book.pages }}</td>
-                <td>{{ book.dateStarted | date : shortDate}}</td>
-                <td>{{ book.description }}</td>
-            </tr>
-        </table>
+                <form novalidate name="newBookForm" ng-submit="vm.addBook()">
+                    <div class="form-group">
+                        <label>Book Name</label>
+                        <input class="form-control" id="name" name="name" ng-model="vm.newBook.name" required />
+                        <span ng-show="newBookForm.name.$error.required" class="text-warning">Name is required</span>
+                    </div>
 
-        <!-- Razor code replace with Angular Routes -->
-        <!--<ul>
-            @foreach (var item in Model)
-            {
-            <li>@item.Name : @item.DateCreated.ToString("d")</li>
-            }
-        </ul>-->
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input class="form-control" id="description" name="description" ng-model="vm.newBook.description" />
+                    </div>
 
-    </div>
-</div>
+
+                    <div class="form-group">
+                        <label>Date Started</label>
+                        <input class="form-control" id="dateStarted" name="dateStarted" ng-model="vm.newBook.dateStarted" />
+
+                        <!--ng-pattern="/^)\d{2})\/(\d{2})\/(\d{4})$/"-->
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label>Pages</label>
+                        <input class="form-control" id="pages" name="pages" ng-model="vm.newBook.pages" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Author</label>
+                        <input class="form-control" id="author" name="author" ng-model="vm.newBook.author" />
+                    </div>
+
+
+
+                    <div>
+                        <input type="submit" value="Add" class="btn btn-success" ng-disabled="newBookForm.$invalid" />
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-8">
+                <h2>Twoje Książki</h2>
+
+                <table class="table table-responsive table-striped">
+                    <tr>
+                        <th>Book Id</th>
+                        <th>Book Name</th>
+                        <th>Pages</th>
+                        <th>Date Started</th>
+                        <th>Description</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr ng-repeat="book in vm.books">
+                        <td>{{ book.bookId }}</td>
+                        <td>{{ book.name }}</td>
+                        <td>{{ book.pages }}</td>
+                        <td>{{ book.dateStarted | date : shortDate}}</td>
+                        <td>{{ book.description }}</td>
+
+                        <td>
+                            <a ng-click="vm.deleteBook(book.bookId)" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+
+
+
+                </table>
+
+                <!-- Razor code replace with Angular Routes -->
+                <!--<ul>
+                    @foreach (var item in Model)
+                    {
+                    <li>@item.Name : @item.DateCreated.ToString("d")</li>
+                    }
+                </ul>-->
+
+            </div>
+        </div>
