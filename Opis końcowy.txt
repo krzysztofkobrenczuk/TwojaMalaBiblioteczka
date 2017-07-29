@@ -4,7 +4,26 @@ Link do filmu: https://youtu.be/xRH2l8ATw04
 ------- Biblioteczka - Twoja ma³a biblioteka --------
 Aplikacja webowa zbudowana przy u¿yciu technologii ASP.NET.
 
-- Model-View-Controller - rozdzielenie poszczególnych zadañ w aplikacji
+ - W projekcie zosta³ u¿yty wzorzec wizualny MVC - model view controller. Pozwala on na podzielenie aplikacji na 
+trzy g³ówne czêsci. 
+Model - który odpowiada za reprezentacjê logiki aplikacji - czyli wszelkie jednostki, klasy opisuj¹ce nasze produkty czyli
+ksi¹¿ki i pó³ki, repozytorium które zarz¹dza wywo³aniami z bazy danych np. ZnajdŸ pó³ki po ID, weŸ wszystkie Pó³ki z bazy danych, wszystkie
+pó³ki danego u¿ytkownika oraz samo entity framework które pozwala odwozorwaæ relacyjn¹ bazê danych za pomoc¹ architektury obiektowej.
+View czyli widok odpowiada za ca³y interfejs aplikacji oraz wygl¹d.
+Mamy wspólny g³owny layout, z którego korzystaj¹ wszystkie podstrony. Mamy podstrony autoryzacyjne, oraz strony
+odpowiadaj¹ce ju¿ za aplikacjê czyli Dodawanie pó³ek, ksi¹¿ek. nale¿y zauwa¿yæ, ¿e View odpowiada jedynie za widok, a nie
+za funkcjonalnoœæ.
+ViewModel - reprezentuje dane które chcemy wyœwietliæ na stronie/widoku, w projekcie u¿ywane jest ze wzglêdu na dane 
+które maj¹ byæ wprowadzone czyli np. w bookshelveviewmodel mamy wymagan¹ nazwê Pó³ki której minimalna
+d³ugoœæ nazwy mo¿e mieæ 3, w contakcie wymagane jest podanie imienia adresu email oraz wiadomoœci. 
+Kontroler - odpowiada za kontrole w aplikacji, przyjmuje dane od uzytkownika poprzez Widok i reaguje poprzez 
+aktualizacjê modelu i odœwie¿enie widoków.
+W aplikacji wystêpuje kilka kontrolerów, odpowiedzialnych za autoryzacjê, logowanie oraz rejestracê, a tak¿ê migracjê
+miêdzy poszczególnymi podstronami. Kontrolery zwracaj¹ widok. wykorzystane s¹ tak¿e do API, za pomoc¹ którego 
+mo¿emy korzystaæ z operacji CRUD (create, read, update oraz delete na zapytaniach). Api np ksi¹¿ek pozwala na pobranie
+wszystkich ksi¹¿ek danego u¿ytkownika z bazy danych, pozwala na dodanie ksi¹¿ek, oraz usuniêcie ich. Jednak w przypadku
+kontrolera dzieje siê to po stronie serwera.
+
 - Entity Framework - z wykorzystaniem MSSQL baza danych przechowuj¹ca "Pó³ki", "Ksi¹¿ki", U¿ytkowników
 - ASP.NET Identity - mo¿liwoœæ logowania, wylogowywania, przechowywanie danych poszczególnych u¿ytkowników
 - Stworzenie API dla ksi¹¿ek i pó³ek (kontroler z MVC wykorzystany tak¿e do API, za pomoc¹ którego 
