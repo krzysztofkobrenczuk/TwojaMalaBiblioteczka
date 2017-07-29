@@ -1,0 +1,44 @@
+﻿<!--<div ng-controller="bookshelvesController as vm" class="col-md-6 col-md-offset-3">-->
+<div class="col-md-6 col-md-offset-3">
+    <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
+    <wait-cursor displaywhen="vm.isBusy"></wait-cursor>
+
+
+    <h2>Your bookshelves</h2>
+    <table class="table table-responsive table-striped">
+        <tr>
+            <th>Bookshelf Name</th>
+            <th>Date Created</th>
+            <th>Edit your bookshelf</th>
+            <th>Delete bookshelf</th>
+            </tr>
+
+            <tr ng-repeat="bookshelves in vm.bookshelves">
+            <td>{{bookshelves.name}}</td>
+            <td>{{bookshelves.dateCreated | date : shortDate }}</td>
+
+            <!-- # przychodzi z ROUTE app-bookshelve mówi przeglądarce, że to inter-page link-->
+            <td><a ng-href="#!/editor/{{ bookshelves.name }}" class="btn btn-sm btn-primary">Managed</a></td>
+            <td>
+                <a ng-click="vm.deleteBookshelves(bookshelves.id)" class="btn btn-sm btn-danger">Delete</a>
+            </td>         
+        </tr>
+    </table>
+    <form novalidate name="newBookshelveForm" ng-submit="vm.addBookshelve()">
+        <div class="form-group">
+            <label for="name">Bookshelf Name</label>
+            <input class="form-control" type="text" id="name" name="name" ng-model="vm.newBookshelve.name" required ng-minlength="3" />
+            <span ng-show="newBookshelveForm.name.$error.required" class="text-warning">Name is required</span>
+            <span ng-show="newBookshelveForm.name.$error.minlength" class="text-warning">Name must be at least 3 characters</span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add"
+                   class="btn btn-sm btn-success"
+                   ng-disabled="newBookshelveForm.$invalid" />
+            <!-- ng-disabled sb cant submit until data is valid -->
+
+
+        </div>
+    </form>
+
+</div>

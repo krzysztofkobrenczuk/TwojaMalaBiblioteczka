@@ -1,8 +1,0 @@
-﻿{
-  "MailSettings": {
-    "ToAddress": "kobra1253@gmail.com"
-  },
-  "ConnectionStrings": {
-    "LibraryContextConnection": "Server=(localdb)\\MSSQLLocalDb;Database=BiblioteczkaDb;Trusted_Connection=true;MultipleActiveResultSets=true;"
-  }
-}

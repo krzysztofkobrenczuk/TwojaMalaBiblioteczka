@@ -1,0 +1,83 @@
+﻿
+
+        <div>
+            <div>
+                <a href="#!/" class="btn btn-sm btn-default"><i class="fa fa-angle-left"></i>Back</a>
+            </div>
+            <div class="col-md-4">
+                <h2>{{ vm.bookshelveName }}</h2>
+
+                <wait-cursor display-when="vm.isBusy"></wait-cursor>
+                <div class="alert alert-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
+
+                <form novalidate name="newBookForm" ng-submit="vm.addBook()">
+                    <div class="form-group">
+                        <label>Book Name</label>
+                        <input class="form-control" id="name" name="name" ng-model="vm.newBook.name" required />
+                        <span ng-show="newBookForm.name.$error.required" class="text-warning">Name is required</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input class="form-control" id="description" name="description" ng-model="vm.newBook.description" />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Date Started (MM/DD/YYYY)</label>
+                        <input class="form-control" id="dateStarted" name="dateStarted" ng-model="vm.newBook.dateStarted"/>
+                    </div>
+
+                            <div class="form-group">
+                                <label>Pages</label>
+                                <input class="form-control" id="pages" name="pages" ng-model="vm.newBook.pages" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Author</label>
+                                <input class="form-control" id="author" name="author" ng-model="vm.newBook.author" />
+                            </div>
+
+                            <div>
+                                <input type="submit" value="Add" class="btn btn-success" ng-disabled="newBookForm.$invalid" />
+                            </div>
+                </form>
+            </div>
+
+            <div class="col-md-8">
+                <h2>Your books</h2>
+
+                <table class="table table-responsive table-striped">
+                    <tr>
+                        <!--<th>Book Id</th>-->
+                        <th>Book Name</th>
+                        <th>Pages</th>
+                        <th>Date Started</th>
+                        <th>Description</th>
+                        <th>Author</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr ng-repeat="book in vm.books">
+                        <!--<td>{{ book.bookId }}</td>-->
+                        <td>{{ book.name }}</td>
+                        <td>{{ book.pages }}</td>
+                        <td>{{ book.dateStarted | date : shortDate}}</td>
+                        <td>{{ book.description }}</td>
+                        <td>{{book.author}}</td>
+
+                        <!--<td>
+                            <a ng-click="vm.finishBook()" class="btn btn-sm btn-success">End</a>
+                        </td>-->
+                        <td>
+                            <a ng-click="vm.deleteBook(book.bookId)" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+
+
+
+                </table>
+                  
+
+
+            </div>
+        </div>
