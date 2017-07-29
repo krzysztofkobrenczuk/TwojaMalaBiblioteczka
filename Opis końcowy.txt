@@ -1,0 +1,19 @@
+Link do filmu: https://youtu.be/xRH2l8ATw04
+
+
+------- Biblioteczka - Twoja ma³a biblioteka --------
+Aplikacja webowa zbudowana przy u¿yciu technologii ASP.NET.
+
+- Model-View-Controller - rozdzielenie poszczególnych zadañ w aplikacji
+- Entity Framework - z wykorzystaniem MSSQL baza danych przechowuj¹ca "Pó³ki", "Ksi¹¿ki", U¿ytkowników
+- ASP.NET Identity - mo¿liwoœæ logowania, wylogowywania, przechowywanie danych poszczególnych u¿ytkowników
+- Stworzenie API dla ksi¹¿ek i pó³ek (kontroler z MVC wykorzystany tak¿e do API, za pomoc¹ którego 
+mo¿emy korzystaæ z operacji CRUD (create, read, update oraz delete). Api np ksi¹¿ek pozwala na pobranie
+wszystkich ksi¹¿ek danego u¿ytkownika z bazy danych, pozwala na dodanie ksi¹¿ek, oraz usuniêcie ich itd.) 
+- Strona wizualna aplikacji przy u¿yciu HTML/CSS/Bootstrap
+- AngularJS - Po stronie klienta ¿¹dania wykonywane s¹ przy u¿yciu Angulara JS, pozwla on na dwustronne bindowanie, gdzie automatycznie 
+synchronizowane s¹ dane, które mamy po stronie widoku. Wykorzysta³em go aby móc na bierz¹co odœwie¿aæ widok, oraz ze wzglêdu
+na walidacjê poprawnoœci wprowadzanych danych. Dziêki niemu wykorzystywane jest API po stronie kontrolerów serwera.
+
+ 
+
